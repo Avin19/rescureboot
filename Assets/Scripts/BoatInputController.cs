@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoatInputController : MonoBehaviour
 {
-    [SerializeField] private float boatMinYDegree,boatMaxYDegree,boatSpeed,boatRotationSmoothTime,boatRotationSensitivity;
+    [SerializeField] private float boatMinYDegree, boatMaxYDegree, boatSpeed, boatRotationSmoothTime, boatRotationSensitivity;
     public GameObject waterSplatParticle;
-    private float boatYDegree,boatSmoothingVelocity;
+    private float boatYDegree, boatSmoothingVelocity;
     private Quaternion boatInitialRotation;
     private Vector2 initialTouchPosition;
     private Rigidbody rigidbody;
@@ -21,13 +19,13 @@ public class BoatInputController : MonoBehaviour
         boatInitialRotation = transform.rotation;
     }
     void Update()
-    {    
-      
-        //transform.Translate(Vector3.forward * Time.deltaTime * boatSpeed, Space.Self);
+    {
+
+        //  transform.Translate(Vector3.forward * Time.deltaTime * boatSpeed, Space.Self);
     }
     private void FixedUpdate()
     {
-        //Input burada alýnmamalý, kötü
+        //Input 
         if (Input.GetMouseButtonDown(0))
         {
             initialTouchPosition = Input.mousePosition;
@@ -40,7 +38,7 @@ public class BoatInputController : MonoBehaviour
             target = Mathf.Clamp(target, boatMinYDegree, boatMaxYDegree);
             boatYDegree = Mathf.SmoothDamp(boatYDegree, target, ref boatSmoothingVelocity, boatRotationSmoothTime);
             Vector3 boatRotation = new Vector3(boatInitialRotation.x, boatYDegree, boatInitialRotation.z);
-            //transform.rotation = Quaternion.Euler(boatRotation);
+            transform.rotation = Quaternion.Euler(boatRotation);
             rigidbody.rotation = Quaternion.Euler(boatRotation);
         }
         rigidbody.velocity = (transform.forward * boatSpeed);
