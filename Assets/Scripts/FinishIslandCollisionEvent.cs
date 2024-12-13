@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class FinishIslandCollisionEvent : MonoBehaviour
@@ -23,7 +22,7 @@ public class FinishIslandCollisionEvent : MonoBehaviour
     {
         foreach (var item in dansadam)
         {
-            Instantiate(dansAdam, item.transform.position,item.rotation);
+            Instantiate(dansAdam, item.transform.position, item.rotation);
         }
     }
 }
